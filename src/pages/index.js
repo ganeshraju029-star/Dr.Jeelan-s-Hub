@@ -13,7 +13,7 @@ import Footer from "../Components/Footer";
 import InfoModal from "../Components/InfoModal";
 import AppointmentModal from "../Components/AppointmentModal";
 import SupportCard from "../Components/SupportCard";
-import MedicalEquipment from "../components/MedicalEquipment";
+import MedicalEquipment from "../Components/MedicalEquipment";
 
 export default function Home() {
   const [activeInfo, setActiveInfo] = useState(null);
