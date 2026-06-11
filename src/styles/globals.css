@@ -469,9 +469,14 @@ body {
 
 .services-modern-body {
   display: grid;
-  grid-template-columns: 1fr 0.7fr;
+  grid-template-columns: 1fr;
   gap: 34px;
   align-items: start;
+  transition: grid-template-columns 0.4s ease;
+}
+
+.services-modern-body.panel-open {
+  grid-template-columns: 1fr 0.7fr;
 }
 
 .services-slider {

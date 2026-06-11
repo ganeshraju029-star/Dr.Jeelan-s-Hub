@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Services({ openAppointment }) {
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(null);
 
   const services = [
     {
@@ -78,7 +78,6 @@ export default function Services({ openAppointment }) {
           viewport={{ once: true }}
         >
           <div className="section-pill">Services</div>
-
           <h2>
             Quality Service
             <br />
@@ -97,15 +96,14 @@ export default function Services({ openAppointment }) {
         </motion.p>
       </div>
 
-      <div className="services-modern-body">
+      {/* panel-open class switches the grid from 1-col to split */}
+      <div className={`services-modern-body ${activeService ? "panel-open" : ""}`}>
         <div className="services-slider">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
-              className={`modern-service-card ${
-                active === index ? "active" : ""
-              }`}
-              onClick={() => setActive(index)}
+              className={`modern-service-card ${active === index ? "active" : ""}`}
+              onClick={() => setActive(active === index ? null : index)}
               initial={{ opacity: 0, x: 80, scale: 0.96 }}
               whileInView={{ opacity: 1, x: 0, scale: 1 }}
               transition={{
@@ -135,12 +133,11 @@ export default function Services({ openAppointment }) {
             <motion.div
               key={activeService.title}
               className="service-detail-panel"
-              initial={{ opacity: 0, x: 45, scale: 0.96 }}
+              initial={{ opacity: 0, x: 60, scale: 0.95 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
-              exit={{ opacity: 0, x: 45, scale: 0.96 }}
-              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              exit={{ opacity: 0, x: 60, scale: 0.95 }}
+              transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
             >
-              {/* Close button */}
               <button
                 type="button"
                 className="service-panel-close"
@@ -151,9 +148,7 @@ export default function Services({ openAppointment }) {
               </button>
 
               <span>Selected Service</span>
-
               <h3>{activeService.title}</h3>
-
               <p>{activeService.desc}</p>
 
               <div className="service-points">
